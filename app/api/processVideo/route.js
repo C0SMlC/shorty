@@ -1,169 +1,79 @@
-import fs from "fs";
+// app/api/process-video/route.ts
+import { NextRequest, NextResponse } from "next/server";
+import { bundle } from "@remotion/bundler";
+import { getCompositions, renderMedia } from "@remotion/renderer";
 import path from "path";
-import ffmpeg from "fluent-ffmpeg";
-import axios from "axios";
-import os from "os"; // For handling temporary directory paths
+import fs from "fs/promises";
+import { writeFile } from "fs/promises";
+import os from "os";
 
-export const config = {
-  api: {
-    bodyParser: false, // We manually handle the request body
-  },
-};
+async function processVideo(videoBuffer) {
+  // Create a temporary directory for processing
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-"));
+  const inputPath = path.join(tempDir, "input.mp4");
+  const outputPath = path.join(tempDir, "output.mp4");
 
-export async function POST(req) {
-  const contentType = req.headers.get("content-type") || "";
+  // Write uploaded video to temp directory
+  await writeFile(inputPath, videoBuffer);
 
-  if (!contentType.includes("multipart/form-data")) {
-    return new Response(
-      JSON.stringify({ message: "Unsupported content type" }),
-      {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+  // Bundle the composition
+  // const bundleLocation = await bundle(
+  //   path.join(process.cwd(), "src/video/composition.js")
+  // );
+  const compositions = await getCompositions(bundleLocation);
+  const composition = compositions.find((c) => c.id === "CaptionedVideo");
+
+  if (!composition) {
+    throw new Error("Composition not found");
   }
 
-  const formData = await req.formData();
-  const videoUrl = formData.get("videoUrl");
-  const captions = formData.get("captions");
+  // Render the video
+  await renderMedia({
+    composition,
+    serveUrl: bundleLocation,
+    codec: "h264",
+    outputLocation: outputPath,
+    inputProps: {
+      videoSource: inputPath,
+    },
+  });
 
-  if (!videoUrl || !captions) {
-    return new Response(
-      JSON.stringify({ message: "Missing videoUrl or captions" }),
-      {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-  }
+  // Read the processed video
+  const outputBuffer = await fs.readFile(outputPath);
 
-  let captionsData;
-  try {
-    captionsData = JSON.parse(captions);
-  } catch (parseErr) {
-    console.error("Error parsing captions JSON:", parseErr);
-    return new Response(JSON.stringify({ message: "Invalid captions JSON" }), {
-      status: 400,
-      headers: { "Content-Type": "application/json" },
-    });
-  }
+  // Clean up temp files
+  await fs.rm(tempDir, { recursive: true, force: true });
 
-  // Use OS temporary directory
-  const tempDir = os.tmpdir();
+  // Store in public directory
+  const publicPath = path.join(process.cwd(), "public/processed");
+  await fs.mkdir(publicPath, { recursive: true });
+  const finalPath = path.join(publicPath, `processed-${Date.now()}.mp4`);
+  await fs.writeFile(finalPath, outputBuffer);
 
-  const tempVideoPath = path.join(tempDir, `input_${Date.now()}.mp4`);
-  const outputVideoPath = path.join(tempDir, `output_${Date.now()}.mp4`);
-  const assPath = path.join(tempDir, `captions_${Date.now()}.ass`); // Ensure this is defined early
-
-  try {
-    // Download the video from the provided URL
-    const response = await axios({
-      method: "GET",
-      url: videoUrl,
-      responseType: "stream",
-    });
-
-    const writer = fs.createWriteStream(tempVideoPath);
-    response.data.pipe(writer);
-
-    await new Promise((resolve, reject) => {
-      writer.on("finish", resolve);
-      writer.on("error", reject);
-    });
-
-    // Create subtitles in ASS format
-    createASSFile(captionsData, assPath);
-
-    // Process video with FFmpeg to embed captions
-    await new Promise((resolve, reject) => {
-      ffmpeg(tempVideoPath)
-        .outputOptions([
-          "-vf",
-          `ass=${assPath}`, // Apply the ass subtitle filter
-          "-c:a",
-          "copy", // Copy audio stream without re-encoding
-        ])
-        .on("end", () => {
-          console.log("FFmpeg processing finished");
-          resolve();
-        })
-        .on("error", (ffmpegErr) => {
-          console.error("FFmpeg error:", ffmpegErr);
-          reject(ffmpegErr);
-        })
-        .save(outputVideoPath);
-    });
-
-    // Read the processed video
-    const processedVideo = fs.readFileSync(outputVideoPath);
-
-    // Set headers and send the video
-    return new Response(processedVideo, {
-      status: 200,
-      headers: {
-        "Content-Type": "video/mp4",
-        "Content-Disposition": "attachment; filename=processed_video.mp4",
-      },
-    });
-  } catch (processingError) {
-    console.error("Error processing video:", processingError);
-    return new Response(JSON.stringify({ message: "Error processing video" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
-  } finally {
-    // Clean up temporary files
-    [tempVideoPath, outputVideoPath, assPath].forEach((filePath) => {
-      if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
-      }
-    });
-  }
+  return finalPath.replace(process.cwd() + "/public", "");
 }
 
-// Helper function to create ASS subtitle file
-const createASSFile = (captions, assPath) => {
-  const header = `
-[Script Info]
-; Script generated by ChatGPT
-Title: Captions
-ScriptType: v4.00+
-PlayResX: 1920
-PlayResY: 1080
+export async function POST(request) {
+  try {
+    const formData = await request.formData();
+    const file = formData.get("video");
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,Helvetica,24,&H00FFFFFF,&H000000FF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,2,2,2,10,10,10,1
+    if (!file) {
+      return NextResponse.json(
+        { error: "No video file provided" },
+        { status: 400 }
+      );
+    }
 
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-`.trim();
+    const buffer = Buffer.from(await file.arrayBuffer());
+    const outputPath = await processVideo(buffer);
 
-  const events = captions
-    .map((cap) => {
-      const start = formatTime(cap.start);
-      const end = formatTime(cap.end);
-      const text = cap.text.replace(/\\/, "\\\\").replace(/}/, "\\}");
-      return `Dialogue: 0,${start},${end},Default,,0,0,0,,${text}`;
-    })
-    .join("\n");
-
-  fs.writeFileSync(assPath, `${header}\n${events}`);
-};
-
-// Helper function to format time for ASS
-const formatTime = (seconds) => {
-  const h = Math.floor(seconds / 3600)
-    .toString()
-    .padStart(2, "0");
-  const m = Math.floor((seconds % 3600) / 60)
-    .toString()
-    .padStart(2, "0");
-  const s = Math.floor(seconds % 60)
-    .toString()
-    .padStart(2, "0");
-  const cs = Math.floor((seconds % 1) * 100)
-    .toString()
-    .padStart(2, "0");
-  return `${h}:${m}:${s}.${cs}`;
-};
+    return NextResponse.json({ success: true, videoUrl: outputPath });
+  } catch (error) {
+    console.error("Processing error:", error);
+    return NextResponse.json(
+      { error: "Failed to process video" },
+      { status: 500 }
+    );
+  }
+}
