@@ -1,0 +1,926 @@
+[
+  {
+    "id": 1,
+    "seek": 2784,
+    "startTime": 0.0,
+    "endTime": 3.6,
+    "text": "Ladies and gentlemen, I always see comments under my videos like,",
+    "words": [
+      {
+        "startTime": 0.0,
+        "endTime": 0.4,
+        "word": " Ladies"
+      },
+      {
+        "startTime": 0.4,
+        "endTime": 0.54,
+        "word": " and"
+      },
+      {
+        "startTime": 0.54,
+        "endTime": 0.76,
+        "word": " gentlemen,"
+      },
+      {
+        "startTime": 0.86,
+        "endTime": 1.06,
+        "word": " I"
+      },
+      {
+        "startTime": 1.06,
+        "endTime": 1.4,
+        "word": " always"
+      },
+      {
+        "startTime": 1.4,
+        "endTime": 1.76,
+        "word": " see"
+      },
+      {
+        "startTime": 1.76,
+        "endTime": 2.1,
+        "word": " comments"
+      },
+      {
+        "startTime": 2.1,
+        "endTime": 2.36,
+        "word": " under"
+      },
+      {
+        "startTime": 2.36,
+        "endTime": 2.56,
+        "word": " my"
+      },
+      {
+        "startTime": 2.56,
+        "endTime": 2.88,
+        "word": " videos"
+      },
+      {
+        "startTime": 2.88,
+        "endTime": 3.6,
+        "word": " like,"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "seek": 2784,
+    "startTime": 3.68,
+    "endTime": 7.38,
+    "text": " how do you invest your money? But that's not really a good question,",
+    "words": [
+      {
+        "startTime": 3.68,
+        "endTime": 3.74,
+        "word": " how"
+      },
+      {
+        "startTime": 3.74,
+        "endTime": 3.86,
+        "word": " do"
+      },
+      {
+        "startTime": 3.86,
+        "endTime": 3.94,
+        "word": " you"
+      },
+      {
+        "startTime": 3.94,
+        "endTime": 4.16,
+        "word": " invest"
+      },
+      {
+        "startTime": 4.16,
+        "endTime": 4.32,
+        "word": " your"
+      },
+      {
+        "startTime": 4.32,
+        "endTime": 4.6,
+        "word": " money?"
+      },
+      {
+        "startTime": 5.62,
+        "endTime": 5.62,
+        "word": " But"
+      },
+      {
+        "startTime": 5.62,
+        "endTime": 6.24,
+        "word": " that's"
+      },
+      {
+        "startTime": 6.24,
+        "endTime": 6.42,
+        "word": " not"
+      },
+      {
+        "startTime": 6.42,
+        "endTime": 6.64,
+        "word": " really"
+      },
+      {
+        "startTime": 6.64,
+        "endTime": 6.74,
+        "word": " a"
+      },
+      {
+        "startTime": 6.74,
+        "endTime": 7.02,
+        "word": " good"
+      },
+      {
+        "startTime": 7.02,
+        "endTime": 7.38,
+        "word": " question,"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "seek": 2784,
+    "startTime": 7.68,
+    "endTime": 11.46,
+    "text": " and here's why at this point I'm investing millions and millions of dollars,",
+    "words": [
+      {
+        "startTime": 7.68,
+        "endTime": 7.82,
+        "word": " and"
+      },
+      {
+        "startTime": 7.82,
+        "endTime": 8.1,
+        "word": " here's"
+      },
+      {
+        "startTime": 8.1,
+        "endTime": 8.32,
+        "word": " why"
+      },
+      {
+        "startTime": 8.32,
+        "endTime": 8.5,
+        "word": " at"
+      },
+      {
+        "startTime": 8.5,
+        "endTime": 8.74,
+        "word": " this"
+      },
+      {
+        "startTime": 8.74,
+        "endTime": 8.94,
+        "word": " point"
+      },
+      {
+        "startTime": 8.94,
+        "endTime": 9.2,
+        "word": " I'm"
+      },
+      {
+        "startTime": 9.2,
+        "endTime": 9.62,
+        "word": " investing"
+      },
+      {
+        "startTime": 9.62,
+        "endTime": 10.16,
+        "word": " millions"
+      },
+      {
+        "startTime": 10.16,
+        "endTime": 10.5,
+        "word": " and"
+      },
+      {
+        "startTime": 10.5,
+        "endTime": 10.88,
+        "word": " millions"
+      },
+      {
+        "startTime": 10.88,
+        "endTime": 11.12,
+        "word": " of"
+      },
+      {
+        "startTime": 11.12,
+        "endTime": 11.46,
+        "word": " dollars,"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "seek": 2784,
+    "startTime": 11.78,
+    "endTime": 16.56,
+    "text": " but 90% of you aren't there yet. So what I do is not going to apply to you,",
+    "words": [
+      {
+        "startTime": 11.78,
+        "endTime": 11.88,
+        "word": " but"
+      },
+      {
+        "startTime": 11.88,
+        "endTime": 12.16,
+        "word": " 90"
+      },
+      {
+        "startTime": 12.16,
+        "endTime": 12.44,
+        "word": "%"
+      },
+      {
+        "startTime": 12.44,
+        "endTime": 12.52,
+        "word": " of"
+      },
+      {
+        "startTime": 12.52,
+        "endTime": 12.74,
+        "word": " you"
+      },
+      {
+        "startTime": 12.74,
+        "endTime": 13.06,
+        "word": " aren't"
+      },
+      {
+        "startTime": 13.06,
+        "endTime": 13.36,
+        "word": " there"
+      },
+      {
+        "startTime": 13.36,
+        "endTime": 13.68,
+        "word": " yet."
+      },
+      {
+        "startTime": 13.96,
+        "endTime": 14.08,
+        "word": " So"
+      },
+      {
+        "startTime": 14.08,
+        "endTime": 14.28,
+        "word": " what"
+      },
+      {
+        "startTime": 14.28,
+        "endTime": 14.52,
+        "word": " I"
+      },
+      {
+        "startTime": 14.52,
+        "endTime": 14.7,
+        "word": " do"
+      },
+      {
+        "startTime": 14.7,
+        "endTime": 14.96,
+        "word": " is"
+      },
+      {
+        "startTime": 14.96,
+        "endTime": 15.28,
+        "word": " not"
+      },
+      {
+        "startTime": 15.28,
+        "endTime": 15.52,
+        "word": " going"
+      },
+      {
+        "startTime": 15.52,
+        "endTime": 15.74,
+        "word": " to"
+      },
+      {
+        "startTime": 15.74,
+        "endTime": 16.02,
+        "word": " apply"
+      },
+      {
+        "startTime": 16.02,
+        "endTime": 16.22,
+        "word": " to"
+      },
+      {
+        "startTime": 16.22,
+        "endTime": 16.56,
+        "word": " you,"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "seek": 2784,
+    "startTime": 16.62,
+    "endTime": 20.76,
+    "text": " but since you guys are curious and I find this to be a rather interesting topic,",
+    "words": [
+      {
+        "startTime": 16.62,
+        "endTime": 17.32,
+        "word": " but"
+      },
+      {
+        "startTime": 17.32,
+        "endTime": 17.76,
+        "word": " since"
+      },
+      {
+        "startTime": 17.76,
+        "endTime": 17.92,
+        "word": " you"
+      },
+      {
+        "startTime": 17.92,
+        "endTime": 18.06,
+        "word": " guys"
+      },
+      {
+        "startTime": 18.06,
+        "endTime": 18.26,
+        "word": " are"
+      },
+      {
+        "startTime": 18.26,
+        "endTime": 18.58,
+        "word": " curious"
+      },
+      {
+        "startTime": 18.58,
+        "endTime": 18.86,
+        "word": " and"
+      },
+      {
+        "startTime": 18.86,
+        "endTime": 19.04,
+        "word": " I"
+      },
+      {
+        "startTime": 19.04,
+        "endTime": 19.22,
+        "word": " find"
+      },
+      {
+        "startTime": 19.22,
+        "endTime": 19.4,
+        "word": " this"
+      },
+      {
+        "startTime": 19.4,
+        "endTime": 19.54,
+        "word": " to"
+      },
+      {
+        "startTime": 19.54,
+        "endTime": 19.64,
+        "word": " be"
+      },
+      {
+        "startTime": 19.64,
+        "endTime": 19.74,
+        "word": " a"
+      },
+      {
+        "startTime": 19.74,
+        "endTime": 20.0,
+        "word": " rather"
+      },
+      {
+        "startTime": 20.0,
+        "endTime": 20.38,
+        "word": " interesting"
+      },
+      {
+        "startTime": 20.38,
+        "endTime": 20.76,
+        "word": " topic,"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "seek": 2784,
+    "startTime": 20.88,
+    "endTime": 24.5,
+    "text": " I decided that today I'm going to share how I would invest a thousand dollars",
+    "words": [
+      {
+        "startTime": 20.88,
+        "endTime": 21.0,
+        "word": " I"
+      },
+      {
+        "startTime": 21.0,
+        "endTime": 21.38,
+        "word": " decided"
+      },
+      {
+        "startTime": 21.38,
+        "endTime": 21.62,
+        "word": " that"
+      },
+      {
+        "startTime": 21.62,
+        "endTime": 21.88,
+        "word": " today"
+      },
+      {
+        "startTime": 21.88,
+        "endTime": 22.08,
+        "word": " I'm"
+      },
+      {
+        "startTime": 22.08,
+        "endTime": 22.24,
+        "word": " going"
+      },
+      {
+        "startTime": 22.24,
+        "endTime": 22.28,
+        "word": " to"
+      },
+      {
+        "startTime": 22.28,
+        "endTime": 22.5,
+        "word": " share"
+      },
+      {
+        "startTime": 22.5,
+        "endTime": 22.8,
+        "word": " how"
+      },
+      {
+        "startTime": 22.8,
+        "endTime": 23.02,
+        "word": " I"
+      },
+      {
+        "startTime": 23.02,
+        "endTime": 23.2,
+        "word": " would"
+      },
+      {
+        "startTime": 23.2,
+        "endTime": 23.42,
+        "word": " invest"
+      },
+      {
+        "startTime": 23.42,
+        "endTime": 23.78,
+        "word": " a"
+      },
+      {
+        "startTime": 23.78,
+        "endTime": 24.02,
+        "word": " thousand"
+      },
+      {
+        "startTime": 24.02,
+        "endTime": 24.5,
+        "word": " dollars"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "seek": 2784,
+    "startTime": 24.5,
+    "endTime": 27.84,
+    "text": " if I wasn't a multi-millionaire, and I want to promise you one thing.",
+    "words": [
+      {
+        "startTime": 24.5,
+        "endTime": 24.86,
+        "word": " if"
+      },
+      {
+        "startTime": 24.86,
+        "endTime": 25.0,
+        "word": " I"
+      },
+      {
+        "startTime": 25.0,
+        "endTime": 25.2,
+        "word": " wasn't"
+      },
+      {
+        "startTime": 25.2,
+        "endTime": 25.38,
+        "word": " a"
+      },
+      {
+        "startTime": 25.38,
+        "endTime": 25.52,
+        "word": " multi"
+      },
+      {
+        "startTime": 25.52,
+        "endTime": 25.98,
+        "word": "-millionaire,"
+      },
+      {
+        "startTime": 26.04,
+        "endTime": 26.38,
+        "word": " and"
+      },
+      {
+        "startTime": 26.38,
+        "endTime": 26.48,
+        "word": " I"
+      },
+      {
+        "startTime": 26.48,
+        "endTime": 26.7,
+        "word": " want"
+      },
+      {
+        "startTime": 26.7,
+        "endTime": 26.74,
+        "word": " to"
+      },
+      {
+        "startTime": 26.74,
+        "endTime": 26.98,
+        "word": " promise"
+      },
+      {
+        "startTime": 26.98,
+        "endTime": 27.14,
+        "word": " you"
+      },
+      {
+        "startTime": 27.14,
+        "endTime": 27.34,
+        "word": " one"
+      },
+      {
+        "startTime": 27.34,
+        "endTime": 27.84,
+        "word": " thing."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "seek": 4506,
+    "startTime": 27.84,
+    "endTime": 32.2,
+    "text": " And by the endTime of this video, you will know how to turn a thousand into 10,000,",
+    "words": [
+      {
+        "startTime": 27.84,
+        "endTime": 28.16,
+        "word": " And"
+      },
+      {
+        "startTime": 28.16,
+        "endTime": 28.28,
+        "word": " by"
+      },
+      {
+        "startTime": 28.28,
+        "endTime": 28.48,
+        "word": " the"
+      },
+      {
+        "startTime": 28.48,
+        "endTime": 28.58,
+        "word": " endTime"
+      },
+      {
+        "startTime": 28.58,
+        "endTime": 28.74,
+        "word": " of"
+      },
+      {
+        "startTime": 28.74,
+        "endTime": 28.86,
+        "word": " this"
+      },
+      {
+        "startTime": 28.86,
+        "endTime": 29.14,
+        "word": " video,"
+      },
+      {
+        "startTime": 29.26,
+        "endTime": 29.26,
+        "word": " you"
+      },
+      {
+        "startTime": 29.26,
+        "endTime": 29.46,
+        "word": " will"
+      },
+      {
+        "startTime": 29.46,
+        "endTime": 29.68,
+        "word": " know"
+      },
+      {
+        "startTime": 29.68,
+        "endTime": 29.78,
+        "word": " how"
+      },
+      {
+        "startTime": 29.78,
+        "endTime": 29.92,
+        "word": " to"
+      },
+      {
+        "startTime": 29.92,
+        "endTime": 30.1,
+        "word": " turn"
+      },
+      {
+        "startTime": 30.1,
+        "endTime": 30.34,
+        "word": " a"
+      },
+      {
+        "startTime": 30.34,
+        "endTime": 30.76,
+        "word": " thousand"
+      },
+      {
+        "startTime": 30.76,
+        "endTime": 31.2,
+        "word": " into"
+      },
+      {
+        "startTime": 31.2,
+        "endTime": 31.62,
+        "word": " 10"
+      },
+      {
+        "startTime": 31.62,
+        "endTime": 32.2,
+        "word": ",000,"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "seek": 4506,
+    "startTime": 32.34,
+    "endTime": 37.22,
+    "text": " or even a hundred thousand dollars in 365 days or less. And yes,",
+    "words": [
+      {
+        "startTime": 32.34,
+        "endTime": 32.5,
+        "word": " or"
+      },
+      {
+        "startTime": 32.5,
+        "endTime": 32.66,
+        "word": " even"
+      },
+      {
+        "startTime": 32.66,
+        "endTime": 32.84,
+        "word": " a"
+      },
+      {
+        "startTime": 32.84,
+        "endTime": 33.12,
+        "word": " hundred"
+      },
+      {
+        "startTime": 33.12,
+        "endTime": 33.42,
+        "word": " thousand"
+      },
+      {
+        "startTime": 33.42,
+        "endTime": 33.74,
+        "word": " dollars"
+      },
+      {
+        "startTime": 33.74,
+        "endTime": 35.08,
+        "word": " in"
+      },
+      {
+        "startTime": 35.08,
+        "endTime": 35.34,
+        "word": " 365"
+      },
+      {
+        "startTime": 35.34,
+        "endTime": 36.06,
+        "word": " days"
+      },
+      {
+        "startTime": 36.06,
+        "endTime": 36.28,
+        "word": " or"
+      },
+      {
+        "startTime": 36.28,
+        "endTime": 36.6,
+        "word": " less."
+      },
+      {
+        "startTime": 36.64,
+        "endTime": 36.82,
+        "word": " And"
+      },
+      {
+        "startTime": 36.82,
+        "endTime": 37.22,
+        "word": " yes,"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "seek": 4506,
+    "startTime": 37.76,
+    "endTime": 41.54,
+    "text": " I'm aware that that's a massive claim, but I don't expect you to take my word for it.",
+    "words": [
+      {
+        "startTime": 37.76,
+        "endTime": 37.98,
+        "word": " I'm"
+      },
+      {
+        "startTime": 37.98,
+        "endTime": 38.14,
+        "word": " aware"
+      },
+      {
+        "startTime": 38.14,
+        "endTime": 38.34,
+        "word": " that"
+      },
+      {
+        "startTime": 38.34,
+        "endTime": 38.7,
+        "word": " that's"
+      },
+      {
+        "startTime": 38.7,
+        "endTime": 38.92,
+        "word": " a"
+      },
+      {
+        "startTime": 38.92,
+        "endTime": 38.92,
+        "word": " massive"
+      },
+      {
+        "startTime": 38.92,
+        "endTime": 39.2,
+        "word": " claim,"
+      },
+      {
+        "startTime": 39.5,
+        "endTime": 39.72,
+        "word": " but"
+      },
+      {
+        "startTime": 39.72,
+        "endTime": 39.78,
+        "word": " I"
+      },
+      {
+        "startTime": 39.78,
+        "endTime": 40.0,
+        "word": " don't"
+      },
+      {
+        "startTime": 40.0,
+        "endTime": 40.2,
+        "word": " expect"
+      },
+      {
+        "startTime": 40.2,
+        "endTime": 40.42,
+        "word": " you"
+      },
+      {
+        "startTime": 40.42,
+        "endTime": 40.54,
+        "word": " to"
+      },
+      {
+        "startTime": 40.54,
+        "endTime": 40.74,
+        "word": " take"
+      },
+      {
+        "startTime": 40.74,
+        "endTime": 40.98,
+        "word": " my"
+      },
+      {
+        "startTime": 40.98,
+        "endTime": 41.2,
+        "word": " word"
+      },
+      {
+        "startTime": 41.2,
+        "endTime": 41.3,
+        "word": " for"
+      },
+      {
+        "startTime": 41.3,
+        "endTime": 41.54,
+        "word": " it."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "seek": 4506,
+    "startTime": 41.64,
+    "endTime": 44.92,
+    "text": " What you're about to watch is exactly what we teach inside of digital launch pad.",
+    "words": [
+      {
+        "startTime": 41.64,
+        "endTime": 41.7,
+        "word": " What"
+      },
+      {
+        "startTime": 41.7,
+        "endTime": 41.88,
+        "word": " you're"
+      },
+      {
+        "startTime": 41.88,
+        "endTime": 42.04,
+        "word": " about"
+      },
+      {
+        "startTime": 42.04,
+        "endTime": 42.24,
+        "word": " to"
+      },
+      {
+        "startTime": 42.24,
+        "endTime": 42.44,
+        "word": " watch"
+      },
+      {
+        "startTime": 42.44,
+        "endTime": 42.68,
+        "word": " is"
+      },
+      {
+        "startTime": 42.68,
+        "endTime": 43.06,
+        "word": " exactly"
+      },
+      {
+        "startTime": 43.06,
+        "endTime": 43.3,
+        "word": " what"
+      },
+      {
+        "startTime": 43.3,
+        "endTime": 43.44,
+        "word": " we"
+      },
+      {
+        "startTime": 43.44,
+        "endTime": 43.7,
+        "word": " teach"
+      },
+      {
+        "startTime": 43.7,
+        "endTime": 44.04,
+        "word": " inside"
+      },
+      {
+        "startTime": 44.04,
+        "endTime": 44.24,
+        "word": " of"
+      },
+      {
+        "startTime": 44.24,
+        "endTime": 44.46,
+        "word": " digital"
+      },
+      {
+        "startTime": 44.46,
+        "endTime": 44.74,
+        "word": " launch"
+      },
+      {
+        "startTime": 44.74,
+        "endTime": 44.92,
+        "word": " pad."
+      }
+    ]
+  }
+]

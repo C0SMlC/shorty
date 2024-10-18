@@ -30,15 +30,20 @@ const CanvasVideoCaptioner = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
 
-    // Set the canvas size to match the video size
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
 
-    // Use captureStream and set a higher bitrate for better quality
-    const stream = canvas.captureStream();
-    const mediaRecorder = new MediaRecorder(stream, {
+    const canvasStream = canvas.captureStream();
+
+    const audioTrack = video.captureStream().getAudioTracks()[0];
+
+    if (audioTrack) {
+      canvasStream.addTrack(audioTrack);
+    }
+
+    const mediaRecorder = new MediaRecorder(canvasStream, {
       mimeType: "video/webm",
-      videoBitsPerSecond: 5 * 1024 * 1024, // 5 Mbps for higher quality
+      videoBitsPerSecond: 5 * 1024 * 1024,
     });
 
     const chunks = [];
@@ -53,9 +58,7 @@ const CanvasVideoCaptioner = () => {
     mediaRecorder.start();
 
     const drawFrame = (time) => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
-
-      // Draw the current video frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
       const currentCaption = captions.find(
@@ -67,24 +70,22 @@ const CanvasVideoCaptioner = () => {
           (time - currentCaption.startTime) /
           (currentCaption.endTime - currentCaption.startTime);
 
-        // Smooth fade-in and fade-out
-        let alpha = 1;
-        if (progress < 0.1) alpha = progress / 0.1; // Fade-in at the start
-        if (progress > 0.9) alpha = (1 - progress) / 0.1; // Fade-out at the end
+        const words = currentCaption.text.split(" ");
+        const chunks = [];
+        for (let i = 0; i < words.length; i += 3) {
+          chunks.push(words.slice(i, i + 3).join(" "));
+        }
 
-        // Slide-in effect from bottom
-        const slideDistance = 50; // Distance from bottom to slide
-        const padding = 20; // Padding from the bottom
-        let slideY = canvas.height - padding + (1 - progress) * slideDistance;
+        const chunkIndex = Math.floor(progress * chunks.length);
+        const currentChunk = chunks[Math.min(chunkIndex, chunks.length - 1)];
 
-        // Set the font and text styling (solid white text)
         ctx.font = "bold 24px Arial";
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
 
-        const maxWidth = canvas.width - 40; // Padding from the sides
-
+        const maxWidth = canvas.width - 40;
         const x = canvas.width / 2;
+        const y = canvas.height - 50;
 
         // Apply shadow for better readability
         ctx.shadowColor = "black";
@@ -92,13 +93,16 @@ const CanvasVideoCaptioner = () => {
         ctx.shadowOffsetX = 2;
         ctx.shadowOffsetY = 2;
 
-        // Set text to white with transparency based on alpha
+        let alpha = 1;
+        const chunkDuration =
+          (currentCaption.endTime - currentCaption.startTime) / chunks.length;
+        const chunkProgress = (progress * chunks.length) % 1;
+        if (chunkProgress < 0.1) alpha = chunkProgress / 0.1;
+        if (chunkProgress > 0.9) alpha = (1 - chunkProgress) / 0.1;
+
         ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+        ctx.fillText(currentChunk, x, y, maxWidth);
 
-        // Draw the caption text within the max width
-        ctx.fillText(currentCaption.text, x, slideY, maxWidth);
-
-        // Reset shadow
         ctx.shadowColor = "transparent";
         ctx.shadowBlur = 0;
         ctx.shadowOffsetX = 0;

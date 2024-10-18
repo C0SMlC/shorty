@@ -32,12 +32,29 @@ function SidebarElements() {
         text="Dashboard"
         active={activeItem === "Dashboard"}
         onClick={() => handleItemClick("Dashboard")}
+        subItems={[
+          {
+            text: "Analytics",
+            onClick: () => console.log("Analytics clicked"),
+          },
+          { text: "Reports", onClick: () => console.log("Reports clicked") },
+        ]}
       />
       <SidebarItem
         icon={<StickyNote size={20} />}
         text="Projects"
         active={activeItem === "Projects"}
         onClick={() => handleItemClick("Projects")}
+        subItems={[
+          {
+            text: "Active",
+            onClick: () => console.log("Active projects clicked"),
+          },
+          {
+            text: "Archived",
+            onClick: () => console.log("Archived projects clicked"),
+          },
+        ]}
       />
       <SidebarItem
         icon={<Calendar size={20} />}
@@ -50,6 +67,13 @@ function SidebarElements() {
         text="Tasks"
         active={activeItem === "Tasks"}
         onClick={() => handleItemClick("Tasks")}
+        subItems={[
+          { text: "My Tasks", onClick: () => console.log("My Tasks clicked") },
+          {
+            text: "Team Tasks",
+            onClick: () => console.log("Team Tasks clicked"),
+          },
+        ]}
       />
       <SidebarItem
         icon={<Flag size={20} />}
