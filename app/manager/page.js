@@ -3,6 +3,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { RotateCcw, ChevronDown } from "lucide-react";
 import { Button } from "@chakra-ui/react";
 import { processVideo } from "@/utils/VideoProcessor";
+import { processVideoWithWordHighlight } from "@/utils/HighLightTemplate";
+import { Play, Pause, Maximize2 } from "lucide-react";
+
+// Helper function to format time
+const formatTime = (seconds) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+};
 
 const KlapStyleEditor = () => {
   const videoRef = useRef(null);
@@ -23,6 +32,7 @@ const KlapStyleEditor = () => {
     useStroke: true,
     useHighlight: true,
     uppercase: true,
+    wordByWordHighlight: false,
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -35,13 +45,16 @@ const KlapStyleEditor = () => {
 
     setIsProcessing(true);
     try {
-      const url = await processVideo({
+      const processor = subtitleStyle.wordByWordHighlight
+        ? processVideoWithWordHighlight
+        : processVideo;
+
+      const url = await processor({
         video: videoRef.current,
         canvas: canvasRef.current,
         subtitles,
         subtitleStyle,
         onProgress: (progress) => {
-          // Optional: Update a progress indicator
           console.log(`Processing: ${Math.round(progress * 100)}%`);
         },
       });
@@ -81,13 +94,13 @@ const KlapStyleEditor = () => {
       const timeIntoSub = currentVideoTime - currentSub.startTime;
 
       // Calculate which group of words should be shown based on time
-      const numGroups = Math.ceil(words.length / 3);
+      const numGroups = Math.ceil(words.length / 2);
       const timePerGroup = totalDuration / numGroups;
       const currentGroupIndex = Math.floor(timeIntoSub / timePerGroup);
 
       // Get the current group of words (3 at a time)
-      const start = currentGroupIndex * 3;
-      const end = Math.min(start + 3, words.length);
+      const start = currentGroupIndex * 2;
+      const end = Math.min(start + 2, words.length);
       setCurrentWordGroup(words.slice(start, end));
     } else {
       setCurrentWordGroup([]);
@@ -183,6 +196,16 @@ const KlapStyleEditor = () => {
               value={subtitleStyle.uppercase}
               onChange={(value) =>
                 setSubtitleStyle({ ...subtitleStyle, uppercase: value })
+              }
+            />
+            <StyleToggle
+              label="Word-by-word Highlight"
+              value={subtitleStyle.wordByWordHighlight}
+              onChange={(value) =>
+                setSubtitleStyle({
+                  ...subtitleStyle,
+                  wordByWordHighlight: value,
+                })
               }
             />
           </div>
@@ -347,48 +370,99 @@ const KlapStyleEditor = () => {
 
         {/* Right Panel - Video Preview */}
         <div className="flex-1 p-4">
-          <div className="relative">
-            <video
-              ref={videoRef}
-              className="w-full aspect-video rounded-lg"
-              onTimeUpdate={handleTimeUpdate}
-              controls
-            >
-              <source src="/Before.mp4" type="video/mp4" />
-            </video>
+          <div className="relative max-w-[400px] mx-auto">
+            {" "}
+            {/* Constrain width to actual video size */}
+            {/* Video Container */}
+            <div className="relative">
+              <video
+                ref={videoRef}
+                className="w-full aspect-[9/16] rounded-lg" // Use portrait aspect ratio for vertical video
+                onTimeUpdate={handleTimeUpdate}
+                controls={false} // Disable default controls
+              >
+                <source src="/Before.mp4" type="video/mp4" />
+              </video>
 
-            {/* Subtitle Overlay */}
-            <div
-              className="absolute w-full text-center"
-              style={{
-                bottom: `${subtitleStyle.position}%`,
-                transform: "translateY(50%)",
-              }}
-            >
+              {/* Custom Progress Bar */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800">
+                <div
+                  className="h-full bg-purple-600 transition-all"
+                  style={{
+                    width: `${
+                      (currentTime / (videoRef.current?.duration || 1)) * 100
+                    }%`,
+                  }}
+                />
+              </div>
+
+              {/* Custom Controls */}
+              <div className="absolute bottom-2 left-2 right-2 flex items-center space-x-2">
+                <button
+                  onClick={() =>
+                    videoRef.current?.paused
+                      ? videoRef.current?.play()
+                      : videoRef.current?.pause()
+                  }
+                  className="text-white p-1 rounded hover:bg-black/20"
+                >
+                  {videoRef.current?.paused ? (
+                    <Play size={16} />
+                  ) : (
+                    <Pause size={16} />
+                  )}
+                </button>
+
+                <div className="text-white text-xs">
+                  {formatTime(currentTime)} /{" "}
+                  {formatTime(videoRef.current?.duration || 0)}
+                </div>
+
+                <div className="flex-grow" />
+
+                <button
+                  onClick={() => videoRef.current.requestFullscreen()}
+                  className="text-white p-1 rounded hover:bg-black/20"
+                >
+                  <Maximize2 size={16} />
+                </button>
+              </div>
+
+              {/* Subtitle Overlay */}
               <div
+                className="absolute w-full text-center"
                 style={{
-                  fontFamily: subtitleStyle.font,
-                  fontSize: `${subtitleStyle.size}px`,
-                  fontWeight: subtitleStyle.weight,
-                  color: subtitleStyle.fill,
-                  ...(subtitleStyle.useStroke && {
-                    WebkitTextStroke: `1px ${subtitleStyle.stroke}`,
-                  }),
-                  ...(subtitleStyle.useHighlight && {
-                    backgroundColor: subtitleStyle.highlight,
-                  }),
-                  display: "inline-block",
-                  padding: "0.2em 0.5em",
-                  borderRadius: "4px",
-                  maxWidth: "80%",
-                  textTransform: subtitleStyle.uppercase ? "uppercase" : "none",
+                  bottom: `${subtitleStyle.position}%`,
+                  transform: "translateY(50%)",
                 }}
               >
-                {currentWordGroup.map((word, index) => (
-                  <span key={index} className="mx-1">
-                    {word.word}
-                  </span>
-                ))}
+                <div
+                  style={{
+                    fontFamily: subtitleStyle.font,
+                    fontSize: `${subtitleStyle.size}px`,
+                    fontWeight: subtitleStyle.weight,
+                    color: subtitleStyle.fill,
+                    ...(subtitleStyle.useStroke && {
+                      WebkitTextStroke: `1px ${subtitleStyle.stroke}`,
+                    }),
+                    ...(subtitleStyle.useHighlight && {
+                      backgroundColor: subtitleStyle.highlight,
+                    }),
+                    display: "inline-block",
+                    padding: "0.2em 0.5em",
+                    borderRadius: "4px",
+                    maxWidth: "80%",
+                    textTransform: subtitleStyle.uppercase
+                      ? "uppercase"
+                      : "none",
+                  }}
+                >
+                  {currentWordGroup.map((word, index) => (
+                    <span key={index} className="mx-1">
+                      {word.word}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
