@@ -198,16 +198,6 @@ const KlapStyleEditor = () => {
                 setSubtitleStyle({ ...subtitleStyle, uppercase: value })
               }
             />
-            <StyleToggle
-              label="Word-by-word Highlight"
-              value={subtitleStyle.wordByWordHighlight}
-              onChange={(value) =>
-                setSubtitleStyle({
-                  ...subtitleStyle,
-                  wordByWordHighlight: value,
-                })
-              }
-            />
           </div>
 
           {/* Color Controls */}

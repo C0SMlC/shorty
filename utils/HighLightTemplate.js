@@ -24,12 +24,12 @@ export const processVideoWithWordHighlight = async ({
   canvas.style.width = video.videoWidth + "px";
   canvas.style.height = video.videoHeight + "px";
 
-  ctx.textRendering = "geometricPrecision";
-  ctx.fontKerning = "normal";
-  ctx.textBaseline = "middle";
-  ctx.textAlign = "center";
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = "high";
+  // ctx.textRendering = "geometricPrecision";
+  // ctx.fontKerning = "normal";
+  // ctx.textBaseline = "middle";
+  // ctx.textAlign = "center";
+  // ctx.imageSmoothingEnabled = true;
+  // ctx.imageSmoothingQuality = "high";
 
   const canvasStream = canvas.captureStream(60);
   const mediaRecorder = new MediaRecorder(canvasStream, {
@@ -164,11 +164,11 @@ export const processVideoWithWordHighlight = async ({
         }
 
         // Draw the word
-        ctx.fillStyle = isCurrentWord
-          ? subtitleStyle.fill
-          : subtitleStyle.stroke;
-        ctx.textAlign = "left";
-        ctx.fillText(wordText, currentX, y);
+        // ctx.fillStyle = isCurrentWord
+        //   ? subtitleStyle.fill
+        //   : subtitleStyle.stroke;
+        // ctx.textAlign = "left";
+        // ctx.fillText(wordText, currentX, y);
 
         // Move to next word position
         currentX += wordWidth + spaceWidth;
